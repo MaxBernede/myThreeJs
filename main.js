@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import * as cam from './camera.js';
 import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end} from './camera.js';
 import * as obj from './obj.js';
-import * as bezierEasing from 'bezier-easing';
 
 //!VARIABLES
 let maxspeed = 5;
@@ -69,12 +68,11 @@ function accel(){
   }
 }
 
-const customEasing = bezierEasing(0.25, 0.1, 0.25, 1);
-
 //!Camera
 function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 
-  let t = customEasing((pos-doc_start)/14);
+  let t = (pos-doc_start)/14;
+  t = t * t / (t * t + (1 - t) * (1 - t));
   camera.position.x = pos_start[0] + t * (pos_end[0] - pos_start[0]);
   camera.position.y = pos_start[1] + t * (pos_end[1] - pos_start[1]);
   camera.position.z = pos_start[2] + t * (pos_end[2] - pos_start[2]);
