@@ -6,7 +6,6 @@ import { pos_1, pos_2, pos_3, pos_4 } from './camera.js';
 import * as obj from './obj.js';
 import * as bezierEasing from 'bezier-easing';
 
-
 //!VARIABLES
 let maxspeed = 0.005;
 let minspeed = 0.000005;
