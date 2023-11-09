@@ -9,8 +9,8 @@ canvas {
 
 :root {
   --spacing: 350px;
-  font-family: brandon-grotesque, sans-serif;
-  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -25,9 +25,29 @@ main {
   grid-template-columns: repeat(12, 1fr);
 }
 
-h1, h2, h3, blockquote {
+h3, blockquote {
   font-family: 'Exo 2', sans-serif;
   font-weight: 600;
+  font-style: normal;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  font-style: normal;
+}
+
+h2 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  font-style: normal;
+}
+
+h3 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
   font-style: normal;
 }
 
@@ -44,11 +64,6 @@ section {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: var(--spacing);
-}
-
-
-p {
-  font-family: 'Exo 2', sans-serif;
 }
 
 blockquote {
@@ -88,4 +103,18 @@ blockquote p {
 
 .right-half {
   flex: 1; 
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+img {
+  max-width: 80px;
+  height: auto;
 }

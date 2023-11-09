@@ -1,7 +1,10 @@
 export const pos_1 = [-5, -3, 12];
 export const pos_2 = [-10, 0, 20];
 export const pos_3 = [90, 0, 100];
-export const pos_4 = [0, -3, 20];
+export const pos_4 = [40, 0, 50];
+//export const pos_4 = [0, -3, 20];
+export const pos_tor_start = [-600, -10, -300];
+export const pos_tor_end = [0, 0, 0];
 
 export function which_cam(cam_pos, camera) {
 	let position;
