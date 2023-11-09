@@ -1,5 +1,5 @@
 {
-  "name": "mytreee",
+  "name": "3dtest",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "bezier-easing": "^2.1.0",
     "three": "^0.158.0"
   }
 }
