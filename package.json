@@ -12,6 +12,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "bezier-easing": "^2.1.0",
     "three": "^0.158.0"
   }

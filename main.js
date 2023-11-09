@@ -4,7 +4,10 @@ import * as THREE from 'three';
 import * as cam from './camera.js';
 import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end} from './camera.js';
 import * as obj from './obj.js';
+import { inject } from '@vercel/analytics';
 //import * as bezierEasing from 'bezier-easing';
+
+inject();
 
 //!VARIABLES
 let maxspeed = 5;
