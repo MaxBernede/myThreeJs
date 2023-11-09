@@ -86,6 +86,7 @@ function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 function move_tor(pos, doc_start, doc_end, pos_tor_start, pos_tor_end, obj){
 
   let t = (pos-doc_start)/14;
+  t = t * t / (t * t + (1 - t) * (1 - t));
   let tx;
   let ty;
   let tz;
