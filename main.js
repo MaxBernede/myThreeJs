@@ -74,7 +74,7 @@ function accel(){
 //!Camera
 function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 
-  let t = customEasing((pos-doc_start)/14);
+  let t = (pos-doc_start)/14;
   t = t * t / (t * t + (1 - t) * (1 - t));
   camera.position.x = pos_start[0] + t * (pos_end[0] - pos_start[0]);
   camera.position.y = pos_start[1] + t * (pos_end[1] - pos_start[1]);
