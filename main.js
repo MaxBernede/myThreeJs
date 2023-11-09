@@ -5,7 +5,6 @@ import * as cam from './camera.js';
 import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end} from './camera.js';
 import * as obj from './obj.js';
 import { inject } from '@vercel/analytics';
-//import * as bezierEasing from 'bezier-easing';
 
 inject();
 
@@ -72,8 +71,6 @@ function accel(){
   }
 }
 
-//const customEasing = bezierEasing(0.25, 0.1, 0.25, 1);
-
 //!Camera
 function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 
@@ -88,7 +85,7 @@ function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 
 function move_tor(pos, doc_start, doc_end, pos_tor_start, pos_tor_end, obj){
 
-  let t = customEasing((pos-doc_start)/14);
+  let t = (pos-doc_start)/14;
   let tx;
   let ty;
   let tz;
@@ -129,6 +126,7 @@ function moveCamera() {
       mode = 2;
       torus.position.set(0,0,0);
       torus2.position.set(0,0,0);
+      torus3.position.set(0,0,0);
     }
     move_cam(pos, 14, 28, pos_2, pos_3)
   }
@@ -140,6 +138,7 @@ function moveCamera() {
       mode = 3;
       torus.position.set(0,0,0);
       torus2.position.set(0,0,0);
+      torus3.position.set(0,0,0);
     }
     move_cam(pos, 28, 42, pos_3, pos_4);
     move_tor(pos, 28, 42, pos_tor_end, p_1, torus);
