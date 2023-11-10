@@ -1,7 +1,8 @@
 import './style.css'
 
 import * as THREE from 'three';
-import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end, p_1, p_2, p_3} from './camera.js';
+import * as cam from './camera.js';
+import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end} from './camera.js';
 import * as obj from './obj.js';
 import { inject } from '@vercel/analytics';
 
@@ -15,6 +16,9 @@ let y = 0.005;
 let z = 0.01;
 let incr = 1;
 
+let p_1 = [10, 0, -20];
+let p_2 = [50, 0, -40];
+let p_3 = [110, 0, -60];
 //The less the faster for rotation on ratio
 let ratio = 90;
 
@@ -80,15 +84,28 @@ function accel(){
   }
 }
 
+//!Camera
+function move_cam(pos, doc_start, doc_end, pos_start, pos_end){
 
-function move_obj(pos, doc_start, doc_end, pos_tor_start, pos_tor_end, obj){
-
-  let d = doc_end - doc_start;
-  let t = (pos - doc_start) / d;
+  let t = (pos-doc_start)/14;
   t = t * t / (t * t + (1 - t) * (1 - t));
-  let tx = pos_tor_start[0] + t * (pos_tor_end[0] - pos_tor_start[0]);
-  let ty = pos_tor_start[1] + t * (pos_tor_end[1] - pos_tor_start[1]);
-  let tz = pos_tor_start[2] + t * (pos_tor_end[2] - pos_tor_start[2]);
+  camera.position.x = pos_start[0] + t * (pos_end[0] - pos_start[0]);
+  camera.position.y = pos_start[1] + t * (pos_end[1] - pos_start[1]);
+  camera.position.z = pos_start[2] + t * (pos_end[2] - pos_start[2]);
+
+  // console.log('pos = %f x=%f y=%f z=%f', pos, camera.position.x, y, z);
+}
+
+function move_tor(pos, doc_start, doc_end, pos_tor_start, pos_tor_end, obj){
+
+  let t = (pos-doc_start)/14;
+  t = t * t / (t * t + (1 - t) * (1 - t));
+  let tx;
+  let ty;
+  let tz;
+  tx = pos_tor_start[0] + t * (pos_tor_end[0] - pos_tor_start[0]);
+  ty = pos_tor_start[1] + t * (pos_tor_end[1] - pos_tor_start[1]);
+  tz = pos_tor_start[2] + t * (pos_tor_end[2] - pos_tor_start[2]);
 
   obj.position.set(tx,ty,tz);
   // console.log('pos = %f x=%f y=%f z=%f', pos, camera.position.x, y, z);
@@ -98,26 +115,27 @@ let mode = 1;
 
 function moveCamera() {
 	const t = document.body.getBoundingClientRect().top;
-	let pos = t * -1 /max_document;
+	let pos = t * -0.01;
+	//let pos = t * -0.01 /max_document;
 
-  // console.log("maxdocument: ", max_document, pos);
+  console.log("maxdocument: ", max_document, pos);
   if (pos <= 0){
-    camera.position.set(pos_1[0],pos_1[1],pos_1[2]);
+    cam.which_cam(1,camera);
     maxspeed = 0.5;
     minspeed = 0.005;
   }
-  else if (pos <= 1/3){
+  else if (pos <= 42/3){
     if (mode != 1){
       ratio = 150;
       maxspeed = 1;
       minspeed = 0.1;
       mode = 1;
     }
-    move_obj(pos, 0, 1/3, pos_1, pos_2, camera);
-    move_obj(pos, 0, 1/3, pos_tor_start, pos_tor_end, torus);
-    move_obj(pos, 0, 1/3, pos_tor_start, pos_tor_end, torus2);
+    move_cam(pos, 0, 14, pos_1, pos_2);
+    move_tor(pos, 0, 14, pos_tor_start, pos_tor_end, torus);
+    move_tor(pos, 0, 14, pos_tor_start, pos_tor_end, torus2);
   }
-  else if (pos <= 2/3){
+  else if (pos <= 42*2/3){
     if (mode != 2){
       ratio = 100;
       maxspeed = 10;
@@ -127,24 +145,25 @@ function moveCamera() {
       torus2.position.set(0,0,0);
       torus3.position.set(0,0,0);
     }
-    move_obj(pos, 1/3, 2/3, pos_2, pos_3, camera)
+    move_cam(pos, 14, 28, pos_2, pos_3)
   }
-  else if (pos <= max_document){
+  else if (pos <= 42.03){
     if (mode != 3){
       ratio = 150;
-      maxspeed = 10;
-      minspeed = 0.1;
+      maxspeed = 1;
+      minspeed = 0.05;
       mode = 3;
       torus.position.set(0,0,0);
       torus2.position.set(0,0,0);
       torus3.position.set(0,0,0);
     }
-    move_obj(pos, 2/3, 1, pos_3, pos_4, camera);
-    move_obj(pos, 2/3, 1, pos_tor_end, p_1, torus);
-    move_obj(pos, 2/3, 1, pos_tor_end, p_2, torus2);
-    move_obj(pos, 2/3, 1, pos_tor_end, p_3, torus3);
+    move_cam(pos, 28, 42, pos_3, pos_4);
+    move_tor(pos, 28, 42, pos_tor_end, p_1, torus);
+    move_tor(pos, 28, 42, pos_tor_end, p_2, torus2);
+    move_tor(pos, 28, 42, pos_tor_end, p_3, torus3);
   }
   }
+  
 
 document.body.onscroll = moveCamera;
 moveCamera();

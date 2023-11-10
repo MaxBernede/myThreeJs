@@ -21,25 +21,44 @@
           <div class="page"></div>
           <div class="page"></div>
           <div class="page">
-            <div class="flex-container">
-              <div class="left-half">
-              </div>
-              <div class="right-half">
-                <h3>Who I am</h3>
-                <p>
-                  Hi, I'm Maximilien, a French developer with a passion for coding and problem-solving. I find joy in the elegance and efficiency that well-crafted code brings.
-                </p>
-                <h3>How it All Began</h3>
-                <p>
-                  My journey began with utilizing macros and mastering web scraping techniques to gather valuable information for the commercial aspects of the company I worked for. Witnessing the transformative power of IT, I embarked on a new educational path in this exciting field.
-                </p>
-                <h3>Current Focus</h3>
-                <p>
-                  Currently, I'm immersed in learning and mastering C, C++, and Python. My focus includes tackling LeetCode challenges to refine my skills in devising optimized solutions to complex problems.
-                </p>
-              </div>
+            <div id="contentContainer">
+              <!-- Content will be added here dynamically based on screen width -->
             </div>
-                
+          
+            <script>
+              function updateContentContainer() {
+                const contentContainer = document.getElementById("contentContainer");
+          
+                if (window.innerWidth < 600) {
+                  contentContainer.innerHTML = `
+                    <div class="right-half">
+                      <h3>Who I am</h3>
+                      <p>Hi, I'm Maximilien, a French developer with a passion for coding and problem-solving. I find joy in the elegance and efficiency that well-crafted code brings.</p>
+                      <h3>How it All Began</h3>
+                      <p>My journey began with utilizing macros and mastering web scraping techniques to gather valuable information for the commercial aspects of the company I worked for. Witnessing the transformative power of IT, I embarked on a new educational path in this exciting field.</p>
+                      <h3>Current Focus</h3>
+                      <p>Currently, I'm immersed in learning and mastering C, C++, and Python. My focus includes tackling LeetCode challenges to refine my skills in devising optimized solutions to complex problems.</p>
+                    </div>
+                  `;
+                } else {
+                  contentContainer.innerHTML = `
+                    <div class="flex-container">
+                      <div class="left-half"></div>
+                      <div class="right-half">
+                        <h3>Who I am</h3>
+                        <p>Hi, I'm Maximilien, a French developer with a passion for coding and problem-solving. I find joy in the elegance and efficiency that well-crafted code brings.</p>
+                        <h3>How it All Began</h3>
+                        <p>My journey began with utilizing macros and mastering web scraping techniques to gather valuable information for the commercial aspects of the company I worked for. Witnessing the transformative power of IT, I embarked on a new educational path in this exciting field.</p>
+                        <h3>Current Focus</h3>
+                        <p>Currently, I'm immersed in learning and mastering C, C++, and Python. My focus includes tackling LeetCode challenges to refine my skills in devising optimized solutions to complex problems.</p>
+                      </div>
+                    </div>
+                  `;
+                }
+              }
+              updateContentContainer();
+              window.addEventListener("resize", updateContentContainer);
+            </script>   
           </div>
           <div class="page">
           </div>
@@ -50,11 +69,11 @@
                 <blockquote>
                   <p><br><br>See you soon!</p>
                   <div class="image-container">
-                    <a href="https://github.com/MaxBernede" target="_blank">
+                    <a href="https://www.linkedin.com/in/maxbernede/" target="_blank">
                       <img src="./img/linkedin.png" alt="Linkedin logo">
                     </a>
-                    <a href="https://www.linkedin.com/in/maxbernede/" target="_blank">
-                      <img src="./img/github.png" alt="Github logo">
+                    <a href="https://github.com/MaxBernede" target="_blank">
+                    <img src="./img/github.png" alt="Github logo">
                     </a>
                   </div>
                 </blockquote>

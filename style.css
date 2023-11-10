@@ -118,3 +118,25 @@ img {
   max-width: 80px;
   height: auto;
 }
+
+@media only screen and (max-width: 600px) {
+  p {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    font-style: normal;
+  }
+  
+  h2 {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    font-style: normal;
+  }
+  
+  h3 {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    font-style: normal;
+  }
+}
