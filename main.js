@@ -1,7 +1,12 @@
 import './style.css'
 
 import * as THREE from 'three';
-import { pos_1, pos_2, pos_3, pos_4, pos_tor_start, pos_tor_end, p_1, p_2, p_3} from './camera.js';
+import { 
+  desktopPos_1, desktopPos_2, desktopPos_3, desktopPos_4,
+  mobilePos_1, mobilePos_2, mobilePos_3, mobilePos_4,
+  pos_tor_start, pos_tor_end,
+  p_1, p_2, p_3
+} from './camera.js';
 import * as obj from './obj.js';
 import { inject } from '@vercel/analytics';
 
@@ -14,9 +19,31 @@ let x = 0.001;
 let y = 0.005;
 let z = 0.01;
 let incr = 1;
-
-//The less the faster for rotation on ratio
+let pos_1;
+let pos_2;
+let pos_3;
+let pos_4;
 let ratio = 90;
+
+function get_cam_pos() {
+  if (window.innerWidth < 600) {
+      pos_1 = mobilePos_1;
+      pos_2 = mobilePos_2;
+      pos_3 = mobilePos_3;
+      pos_4 = mobilePos_4;
+  } else {
+      pos_1 = desktopPos_1;
+      pos_2 = desktopPos_2;
+      pos_3 = desktopPos_3;
+      pos_4 = desktopPos_4;
+  }
+  console.log(pos_1);
+  console.log(pos_2);
+  console.log(pos_3);
+  console.log(pos_4);
+}
+
+get_cam_pos();
 
 const documentHeight = Math.max(
   document.body.scrollHeight,
@@ -80,7 +107,6 @@ function accel(){
   }
 }
 
-
 function move_obj(pos, doc_start, doc_end, pos_tor_start, pos_tor_end, obj){
 
   let d = doc_end - doc_start;
@@ -100,7 +126,6 @@ function moveCamera() {
 	const t = document.body.getBoundingClientRect().top;
 	let pos = t * -1 /max_document;
 
-  // console.log("maxdocument: ", max_document, pos);
   if (pos <= 0){
     camera.position.set(pos_1[0],pos_1[1],pos_1[2]);
     maxspeed = 0.5;
@@ -145,6 +170,7 @@ function moveCamera() {
     move_obj(pos, 2/3, 1, pos_tor_end, p_3, torus3);
   }
   }
+  
 
 document.body.onscroll = moveCamera;
 moveCamera();
