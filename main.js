@@ -11,9 +11,9 @@ import * as obj from './obj.js';
 import { inject } from '@vercel/analytics';
 
 inject();
-window.addEventListener('resize', function () {
-  location.reload();
-});
+// window.addEventListener('resize', function () {
+//   location.reload();
+// });
 
 //!VARIABLES
 let maxspeed = 5;
